@@ -9,7 +9,7 @@ pipeline {
 
       stage('TF Init&Plan') {
         steps {
-          container('terraform') {
+          container(terraform) {
           sh 'terraform init'
           sh 'terraform plan'
         }      
