@@ -1,6 +1,6 @@
 pipeline {
   
-  agent any
+ 
     
   stages {
 
@@ -8,10 +8,12 @@ pipeline {
 
       stage('TF Init&Plan') {
         steps {
+          container('terraform') {
           sh 'terraform init'
           sh 'terraform plan'
         }      
       }
+    }
 
 //      stage('Approval') {
   //      steps {
