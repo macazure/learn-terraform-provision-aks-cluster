@@ -1,15 +1,16 @@
 pipeline {
   
-   agent any
-  
-    
-  stages {
+agent any
+  tools {
+        "org.jenkinsci.plugins.terraform.TerraformInstallation" "terraform"
+    }
+      stages {
 
     
 
       stage('TF Init&Plan') {
         steps {
-          container(terraform) {
+     gi     container(terraform) {
           sh 'terraform init'
           sh 'terraform plan'
         }      
