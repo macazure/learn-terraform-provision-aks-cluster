@@ -1,5 +1,5 @@
 pipeline {
-  agent any {
+  agent any 
     docker {
       image 'hashicorp/terraform:light'
       args '--entrypoint='
