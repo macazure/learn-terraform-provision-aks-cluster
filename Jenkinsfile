@@ -1,9 +1,26 @@
 pipeline {
-  
-agent any
-  tools {
-        "org.jenkinsci.plugins.terraform.TerraformInstallation" "terraform"
+  agent {
+    docker {
+      image 'hashicorp/terraform:light'
+      args '--entrypoint='
     }
+  }
+  stages {
+    stage('Terraform Plan') { 
+      steps {
+        sh 'terraform plan -no-color -out=create.tfplan' 
+      }
+    }
+  }
+
+
+
+//pipeline {
+  
+//agent any
+//  tools {
+//        "org.jenkinsci.plugins.terraform.TerraformInstallation" "terraform"
+//    }
   
   
 //   environment {
@@ -11,18 +28,18 @@ agent any
 //        TF_IN_AUTOMATION = "true"
 //        PATH = "$TF_HOME:$PATH"
 //    }
-      stages {
+//      stages {
 
     
 
-      stage('TF Init&Plan') {
-        steps {
-     gi     container(terraform) {
-          sh 'terraform init'
-          sh 'terraform plan'
-        }      
-      }
-    }
+//      stage('TF Init&Plan') {
+//        steps {
+//     gi     container(terraform) {
+//          sh 'terraform init'
+//          sh 'terraform plan'  
+//        }      
+//      }
+//    }
 
 //      stage('Approval') {
   //      steps {
@@ -38,5 +55,5 @@ agent any
   //      }
 //      }
 //    }   
- }
-}
+// }
+//}
