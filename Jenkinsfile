@@ -1,26 +1,8 @@
 pipeline {
-  agent any 
-    docker {
-      image 'hashicorp/terraform:light'
-      args '--entrypoint='
-    }
+  agent any
+  tools {
+  "org.jenkinsci.plugins.terraform.TerraformInstallation" "terraform"
   }
-  stages {
-    stage('Terraform Plan') { 
-      steps {
-        sh 'terraform plan -no-color -out=create.tfplan' 
-      }
-    }
-  }
-}
-
-
-//pipeline {
-  
-//agent any
-//  tools {
-//        "org.jenkinsci.plugins.terraform.TerraformInstallation" "terraform"
-//    }
   
   
 //   environment {
@@ -56,4 +38,5 @@ pipeline {
 //      }
 //    }   
 // }
-//}
+
+}
